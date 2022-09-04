@@ -23,18 +23,24 @@ class _HomePageState extends State<HomePage> {
 
   void _handleClickButton(int i) {
     var input = _controler.text;
+    if (input == '') {
+      setState(() {
+        _feedbackText = 'กรุณากรอกตัวเลข';
+      });
+      return;
+    }
     var temp = double.tryParse(input);
-    if(temp == null){
-      setState((){
-        _feedbackText = 'ผิดพลาดกรุณากรอกตัวเลข';
+    if (temp == null) {
+      setState(() {
+        _feedbackText = 'กรอกตัวเลขผิดพลาด กรุณาลองใหม่';
       });
       return;
     }
     switch (i) {
       case 0: //Celsius To Fahrenheit
-         setState(() {
-           _feedbackText = '$temp C = ${MyConverter.C2F(temp)} F';
-         });
+        setState(() {
+          _feedbackText = '$temp C = ${MyConverter.C2F(temp)} F';
+        });
         break;
       case 1: //Celsius To Kelvin
         setState(() {
@@ -93,6 +99,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
               //color: Colors.amberAccent.withOpacity(0.5),
               color: Colors.amber.shade400,
               child: Column(
@@ -100,23 +107,14 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: TextField(
+                      textAlign: TextAlign.center,
                       controller: _controler,
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     // _buildButton('C To F'),
-                  //     // _buildButton('C To K'),
-                  //
-                  //   ],
-                  //
-                  // // Padding(
-                  // //      padding: const EdgeInsets.all(8.0),
-                  // //      child: ElevatedButton(onPressed: null, child: Text('xxx')),
-                  // // ),
-                  // ),
-                  //SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -138,20 +136,7 @@ class _HomePageState extends State<HomePage> {
                       _buildButton(5),
                     ],
                   ),
-                  //SizedBox(height: 10.0),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     for(var r in myList)
-                  //       Row(
-                  //         mainAxisAlignment: MainAxisAlignment.center,
-                  //         children: [
-                  //           for(var i  in r)
-                  //             _buildButton(i)
-                  //         ],
-                  //       ),
-                  //   ],
-                  // ),
+                  SizedBox(height: 16.4),
                 ],
               ),
             ),
