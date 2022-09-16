@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:midterm_sol/pages/home/home_page.dart';
+//import 'package:midterm_sol/pages/home/home_page.dart';
+import 'package:midterm_sol/pages/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }
