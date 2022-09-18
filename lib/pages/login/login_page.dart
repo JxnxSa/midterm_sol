@@ -27,14 +27,42 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  void _handleClickButton(int num){
+    setState(() {
+      _input = _input + num.toString();
+    });
+  }
+
+  // การสร้างฟังก์ชันในรูปแบบ function declaration
+  void func1(){
+    var myList = [1, 2, 3, 'Hello'];
+  }
+
+  //การสร้างฟังก์ชันในรูปแบบนิพจน์ฟังก์ชัน function expression
+  var func2 = () {
+    //
+  };
+
+  void func3(){
+    func1();
+    func2();
+    var f = func2;
+    f();
+  }
+
+
   Widget _buildNumberButton(int num) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
+        // onTap: (){ //callback function, event listener/handler
+        //   setState(() {
+        //     // _input = _input + num.toString();
+        //   });
+        // },
         onTap: (){
-            setState(() {
-              _input = _input + num.toString();
-            });
+          _handleClickButton(num);
         },
         customBorder: CircleBorder(),
         child: Container(
@@ -61,8 +89,35 @@ class _LoginPageState extends State<LoginPage> {
   }
   @override
   Widget build(BuildContext context) {
+    var numberRow1 = [
+      _buildNumberButton(1),
+      _buildNumberButton(2),
+    ];
+    numberRow1.add(_buildNumberButton(3));
+
+    /*var myList = <Widget>[];
+    for(var i = 4; i <= 6; i++){
+      myList.add(_buildNumberButton(i));
+    }*/
+
+    /*var list = [];
+    for(var i = 1; i <= 100; i++){
+      list.add(i);
+    }*/
+    var status = false;
+    var list = [
+      0,
+      for(var i = 1; i <= 100; i++)
+          i,
+      101,102,103,
+      if(status) 104,
+    ];
+
+
+
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             'asset/images/K+.png',
@@ -90,18 +145,15 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildNumberButton(1),
-                  _buildNumberButton(2),
-                  _buildNumberButton(3),
-                ],
+                children: numberRow1,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                // children: myList,
                 children: [
-                  _buildNumberButton(4),
-                  _buildNumberButton(5),
-                  _buildNumberButton(6),
+                  //collection for
+                  for(var i = 4; i <= 6; i++)
+                    _buildNumberButton(i)
                 ],
               ),
               Row(
@@ -111,9 +163,16 @@ class _LoginPageState extends State<LoginPage> {
                   _buildNumberButton(8),
                   _buildNumberButton(9),
                 ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildNumberButton(0),
+                ],
               )
             ],
           ),
+          Text(_input),
         ],
       ),
     );
