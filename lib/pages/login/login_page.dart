@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   var _input = '';
-  //var _message = '';
+  var _message = '';
   Widget _buildIndicator(bool on) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
@@ -44,17 +44,15 @@ class _LoginPageState extends State<LoginPage> {
       //ตรวจสอบรหัสผ่านว่าถูกต้องหรือไม่
       if (_input == password) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const MainPage()
-        )
-        );
+            context, MaterialPageRoute(builder: (context) => const MainPage()));
         // setState(() {
         //   _message = 'ยินดีต้อนรับสู่ Mobile banking';
         // });
       } else {
         showMyDialog(context, 'Sorry', 'Incorrect PIN ,Please try again');
-        // setState(() {
-        //   _message = 'รหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่';
-        // });
+        setState(() {
+          _message = '';
+        });
       }
     }
   }
